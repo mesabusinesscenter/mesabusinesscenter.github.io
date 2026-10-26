@@ -1,0 +1,481 @@
+<title>777 West Southern</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: one scroll — full-bleed hero, then alternating bands of stone and arcade-shade,
+   each band a single idea. Measure capped at 62ch for running text. */
+:root{
+  --paper:#F7F6F2; --panel:#FFFFFF; --ink:#1C1A17; --muted:#6E675C;
+  --teal:#0F7B72; --teal-deep:#0A5A54; --brick:#8C1416;
+  --sand:#E6DCC8; --line:#DAD4C7; --shade:#211D18;
+  --d:'Archivo',"Helvetica Neue",Arial,sans-serif;
+  --b:'Source Serif 4',Georgia,'Times New Roman',serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#17140F; --panel:#211D18; --ink:#F0EADC; --muted:#A79C89;
+  --teal:#35B3A6; --teal-deep:#8FD8CE; --brick:#E07A72;
+  --sand:#3A3228; --line:#352E25; --shade:#100E0B; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --paper:#17140F; --panel:#211D18; --ink:#F0EADC; --muted:#A79C89;
+  --teal:#35B3A6; --teal-deep:#8FD8CE; --brick:#E07A72;
+  --sand:#3A3228; --line:#352E25; --shade:#100E0B; color-scheme:dark }
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font:400 17px/1.55 var(--b);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+.band{padding-block:clamp(44px,6vw,86px)}
+.band--panel{background:var(--panel);border-block:1px solid var(--line)}
+.band--dark{background:var(--shade);color:#F0EADC}
+.band--dark .eyebrow{color:#8FD8CE}
+.band--dark .muted,.band--dark .cap{color:#A99E8B}
+
+.eyebrow{font:600 12px/1 var(--d);letter-spacing:.2em;text-transform:uppercase;
+  color:var(--teal-deep);margin:0 0 14px}
+h1,h2,h3{font-family:var(--d);font-weight:700;text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,6vw,64px);line-height:1.02;letter-spacing:-.02em}
+h2{font-size:clamp(25px,3.4vw,38px);line-height:1.08;letter-spacing:-.015em;margin-bottom:16px}
+h3{font-size:17px;letter-spacing:.01em;margin-bottom:6px}
+p{margin:0 0 14px;max-width:62ch}
+.lede{font-size:clamp(18px,2.1vw,21px);line-height:1.5}
+.muted{color:var(--muted)}
+.cap{font:400 13px/1.45 var(--b);color:var(--muted);margin-top:8px;font-style:italic}
+a{color:var(--teal-deep)}
+
+/* hero */
+.hero{position:relative;background:var(--shade);overflow:hidden;isolation:isolate}
+.heroimg{position:relative;height:clamp(320px,60vh,600px);overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;opacity:.94;
+  transform-origin:62% 46%;animation:drift 34s ease-in-out infinite alternate;will-change:transform}
+@keyframes drift{from{transform:scale(1.015) translate3d(0,0,0)}
+                 to{transform:scale(1.085) translate3d(-1.1%,-1.2%,0)}}
+/* sun bloom, sitting where the light actually falls in the frame */
+.hero .sun{position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;
+  background:radial-gradient(38% 52% at 71% 17%,
+    rgba(255,226,160,.46) 0%, rgba(255,206,122,.22) 34%, rgba(255,190,100,0) 68%);
+  animation:bloom 11s ease-in-out infinite alternate}
+@keyframes bloom{from{opacity:.55;transform:scale(1)} to{opacity:1;transform:scale(1.1)}}
+/* a slow rake of warm light across the stucco */
+.hero .rake{position:absolute;inset:-20% -40%;pointer-events:none;mix-blend-mode:soft-light;
+  background:linear-gradient(104deg,transparent 36%,rgba(255,236,196,.5) 50%,transparent 64%);
+  animation:rake 17s linear infinite}
+@keyframes rake{from{transform:translate3d(-42%,0,0)} to{transform:translate3d(42%,0,0)}}
+/* heat shimmer across the lot, very slight */
+.hero .heat{position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 1px,transparent 1px 3px);
+  animation:heat 6.5s ease-in-out infinite alternate}
+@keyframes heat{from{transform:translateY(0)} to{transform:translateY(2px)}}
+.hero .vig{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 38%,transparent 44%,rgba(12,9,6,.5) 100%)}
+@media (prefers-reduced-motion: reduce){
+  .hero img,.hero .sun,.hero .rake,.hero .heat{animation:none}
+  .hero img{transform:scale(1.02)}
+}
+.hero .over{position:absolute;inset:auto 0 0 0;
+  background:linear-gradient(to top,rgba(14,11,8,.92),rgba(14,11,8,.55) 55%,transparent);
+  padding-block:30px 26px;color:#F6F1E6}
+.hero .eyebrow{color:#9FDCD2}
+.hero h1{color:#FFF}
+.hero .addr{font:400 16px/1.4 var(--b);color:#D8CDB8;margin-top:10px}
+
+/* facts */
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line)}
+.fact{background:var(--panel);padding:16px 18px;min-width:0}
+.fact b{display:block;font:700 clamp(21px,2.6vw,27px)/1 var(--d);color:var(--teal-deep);
+  font-variant-numeric:tabular-nums}
+.fact span{display:block;font:600 11px/1.3 var(--d);letter-spacing:.11em;text-transform:uppercase;
+  color:var(--muted);margin-top:7px}
+
+/* generic two-column */
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(22px,3.4vw,46px);align-items:start}
+@media (max-width:720px){ .two{grid-template-columns:1fr} }
+.two > *{min-width:0}
+
+/* availability cards */
+.suites{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:8px}
+.suite{border:1px solid var(--line);background:var(--panel);padding:16px 18px}
+.suite .n{font:700 15px/1 var(--d);letter-spacing:.06em;text-transform:uppercase;color:var(--brick)}
+.suite p{font-size:15px;margin:8px 0 0;color:var(--muted)}
+
+/* roster */
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th{font:600 11px/1.3 var(--d);letter-spacing:.11em;text-transform:uppercase;text-align:left;
+  color:var(--muted);padding:0 10px 8px 0;border-bottom:1px solid var(--line)}
+td{padding:10px 10px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+td:first-child{font:700 14px/1.5 var(--d);color:var(--teal-deep);white-space:nowrap;width:1%;padding-right:22px}
+
+/* terms list */
+.terms{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+.terms li{display:grid;grid-template-columns:168px 1fr;gap:16px;align-items:baseline}
+@media (max-width:560px){ .terms li{grid-template-columns:1fr;gap:3px} }
+.terms b{font:600 12px/1.5 var(--d);letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+
+/* pull quote */
+.pull{border-left:3px solid var(--teal);padding-left:20px;margin:26px 0 0}
+.pull p{font-size:19px;line-height:1.45;margin:0}
+
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+.gal figure{margin:0;min-width:0}
+.gal img{aspect-ratio:4/3;object-fit:cover;width:100%;max-width:100%}
+
+/* map */
+.mapbox{background:var(--panel);border:1px solid var(--line);padding:18px 16px;overflow-x:auto}
+.mapbox svg{display:block;min-width:620px;width:100%}
+
+.vid{position:relative;background:#000;border:1px solid var(--line)}
+.vid video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:#000}
+.vid--tall{max-width:330px}
+.vid--tall video{aspect-ratio:9/16}
+.spec{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);margin-top:22px}
+.spec div{background:var(--panel);padding:13px 15px;min-width:0}
+.spec b{display:block;font:600 11px/1.3 var(--d);letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+.spec span{display:block;font-size:15.5px;margin-top:5px}
+.band--dark .spec{background:#000} .band--dark .spec div{background:#1A1712}
+.band--dark .spec b{color:#9FDCD2}
+.note{background:var(--sand);color:var(--ink);font:600 12px/1.5 var(--d);
+  letter-spacing:.08em;text-transform:uppercase;padding:9px 0}
+.foot{font-size:14.5px;color:var(--muted)}
+.contact{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:18px 0 6px}
+.mail{font:600 clamp(16px,2.2vw,21px)/1.3 var(--d);letter-spacing:.01em;color:#FFF;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.22);
+  padding:11px 16px;border-radius:2px;user-select:all;word-break:break-all}
+.copy{font:600 12px/1 var(--d);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;
+  background:var(--teal);color:#07211F;border:0;padding:13px 18px;border-radius:2px}
+.copy:hover{background:#4ECCBE}
+.copy:focus-visible{outline:2px solid #FFF;outline-offset:2px}
+.foot b{color:var(--ink)}
+</style>
+
+<header class="hero">
+  <div class="heroimg">
+    <img src="img/hero.jpg" alt="The NATIVE HEALTH Business Center monument sign, solar-covered parking and the arcade seen from Southern Avenue">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="rake" aria-hidden="true"></div>
+    <div class="heat" aria-hidden="true"></div>
+    <div class="vig" aria-hidden="true"></div>
+  </div>
+  <div class="over"><div class="wrap">
+    <p class="eyebrow" style="margin-bottom:10px">NATIVE HEALTH Business Center &middot; Mesa, Arizona</p>
+    <h1>Suites on Southern,<br>inside the district.</h1>
+    <p class="addr">777 West Southern Avenue &middot; 40,562 square feet on 2.98 acres &middot; Superstition Corridor</p>
+  </div></div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="facts">
+      <div class="fact"><b>40,562</b><span>Square feet</span></div>
+      <div class="fact"><b>2.98</b><span>Acres</span></div>
+      <div class="fact"><b>0.44 mi</b><span>To new Sprouts</span></div>
+      <div class="fact"><b>0.78 mi</b><span>To Palo District</span></div>
+      <div class="fact"><b>~15</b><span>Suites available</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--panel">
+  <div class="wrap">
+    <p class="eyebrow">What changed on this corner</p>
+    <h2>A $2.5 billion district is going up<br>three quarters of a mile west.</h2>
+    <div class="two">
+      <div>
+        <p class="lede">The Palo District, on the 77.9-acre former Fiesta Mall site, is planned
+        around a 25,000-seat stadium for professional women's soccer, a $100 million women's health
+        campus, 600 hotel rooms across two properties, plus retail and office.</p>
+        <p>Mesa rezoned it as a theme park district in November 2025, which lets the district issue
+        project-backed bonds and levy its own sales tax. Construction on the stadium, the first
+        retail and hospitality and the health campus begins this summer. The hotels open in early
+        2028.</p>
+        <p>A new Sprouts opens <b>November 6</b> at Alma School and Southern, 0.44 miles west, inside
+        a 15.8-acre development on the northeast corner.</p>
+        <div class="pull"><p>This address is not near that growth. It is inside it &mdash; on the
+        same arterial, with nearly three acres of parking and a licensed clinic already open.</p></div>
+      </div>
+      <div>
+        <div class="mapbox">
+          <svg viewBox="0 0 660 300" role="img" aria-label="Map of West Southern Avenue showing the Business Center, the new Sprouts 0.44 miles west, Alma School Road at 0.52 miles, and the Palo District 0.78 miles west">
+            <style>
+              #mp text{font-family:'Archivo',Arial,sans-serif}
+              .ml{fill:var(--ink);font-size:12px}
+              .ms{fill:var(--muted);font-size:11px}
+              .mb{fill:var(--teal-deep);font-size:13px;font-weight:700}
+            </style>
+            <g id="mp">
+              <line x1="190" y1="118" x2="190" y2="248" stroke="var(--muted)" stroke-width="9" opacity=".16"/>
+              <rect x="14" y="150" width="632" height="15" fill="var(--sand)"/>
+              <line x1="14" y1="157" x2="646" y2="157" stroke="var(--muted)" stroke-width="1.5" stroke-dasharray="9 8"/>
+              <text x="16" y="186" class="ms" style="letter-spacing:.16em;font-weight:600">WEST SOUTHERN AVENUE</text>
+              <rect x="436" y="64" width="196" height="76" fill="var(--panel)" stroke="var(--brick)" stroke-width="2.5"/>
+              <text x="452" y="90" class="mb" style="fill:var(--brick)">NATIVE HEALTH</text>
+              <text x="452" y="110" class="ml">Business Center</text>
+              <text x="452" y="129" class="ms">777 W. Southern Ave</text>
+              <line x1="534" y1="140" x2="534" y2="150" stroke="var(--brick)" stroke-width="2.5"/>
+              <circle cx="534" cy="157" r="6" fill="var(--brick)"/>
+              <rect x="26" y="44" width="250" height="96" fill="var(--panel)" stroke="var(--teal)" stroke-width="2"/>
+              <text x="151" y="68" class="mb" text-anchor="middle">THE PALO DISTRICT</text>
+              <text x="151" y="88" class="ml" text-anchor="middle">77.9 acres &middot; $2.5 billion</text>
+              <text x="151" y="107" class="ml" text-anchor="middle">25,000-seat stadium</text>
+              <text x="151" y="126" class="ms" text-anchor="middle">$100M women's health campus</text>
+              <line x1="151" y1="140" x2="151" y2="150" stroke="var(--teal)" stroke-width="2"/>
+              <circle cx="151" cy="157" r="6" fill="var(--teal)"/>
+              <circle cx="350" cy="157" r="6" fill="var(--teal)"/>
+              <line x1="350" y1="165" x2="350" y2="196" stroke="var(--teal)" stroke-width="2"/>
+              <rect x="268" y="196" width="164" height="58" fill="var(--panel)" stroke="var(--teal)" stroke-width="2"/>
+              <text x="350" y="218" class="mb" text-anchor="middle">SPROUTS</text>
+              <text x="350" y="238" class="ms" text-anchor="middle">opens Nov. 6 &middot; 0.44 mi</text>
+              <text x="190" y="268" class="ms" text-anchor="middle">Alma School Rd &middot; 0.52 mi</text>
+              <line x1="151" y1="26" x2="534" y2="26" stroke="var(--brick)" stroke-width="1.5"/>
+              <line x1="151" y1="20" x2="151" y2="32" stroke="var(--brick)" stroke-width="1.5"/>
+              <line x1="534" y1="20" x2="534" y2="32" stroke="var(--brick)" stroke-width="1.5"/>
+              <text x="342" y="16" class="mb" text-anchor="middle" style="fill:var(--brick)">0.78 miles</text>
+            </g>
+          </svg>
+        </div>
+        <p class="cap">Distances measured from the property's own coordinates.</p>
+        <figure style="margin:18px 0 0"><img src="img/west.jpg" alt="Looking west down Southern Avenue from the property toward Alma School">
+        <figcaption class="cap">West down Southern &mdash; toward Alma School, the new Sprouts and the Palo District.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">The center today</p>
+    <h2>A working center with room to grow.</h2>
+    <div class="two">
+      <div>
+        <table>
+          <tr><th>Already here</th><th>What it brings</th></tr>
+          <tr><td>H&amp;R&nbsp;Block</td><td>A national brand, open on the arcade</td></tr>
+          <tr><td>Medical &amp;&nbsp;dental</td><td>NATIVE HEALTH&rsquo;s clinic, the anchor</td></tr>
+          <tr><td>Behavioral&nbsp;health</td><td>Weekday appointments, steady traffic</td></tr>
+          <tr><td>Benefits</td><td>AHCCCS, SNAP and TANF assistance</td></tr>
+          <tr><td>Family&nbsp;services</td><td>Health Start, Tribal Home Visiting, WIC</td></tr>
+          <tr><td>Food&nbsp;pantry</td><td>Families through the door every week</td></tr>
+          <tr><td>Pharmacy</td><td>Coming</td></tr>
+        </table>
+        <p style="margin-top:18px">Medical, dental, behavioral health, WIC, a food pantry and
+        benefits enrollment run here every weekday, and a pharmacy is coming. That is daily,
+        repeat foot traffic &mdash; the kind a caf&eacute;, a credit union or a service business
+        underwrites a lease against.</p>
+        <div class="pull"><p><b>Tribes from across the country have rented space here to serve
+        their members.</b> When a nation needs an address in this valley for its citizens, this is
+        an address it has chosen.</p></div>
+      </div>
+      <div>
+        <figure style="margin:0"><img src="img/monu.jpg" alt="The tenant monument sign on Southern Avenue listing the businesses at the center">
+        <figcaption class="cap">Tenant signage on Southern Avenue, included with every suite.</figcaption></figure>
+        <div class="suites">
+          <div class="suite"><div class="n">Suite 215</div>
+            <p>Available now. Most recently a tribal nation's Arizona satellite office.</p></div>
+          <div class="suite"><div class="n">Suite 315</div>
+            <p>Move-in ready. Open reception, private offices, new floors.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--panel">
+  <div class="wrap">
+    <p class="eyebrow">Available now</p>
+    <h2>Around fifteen suites are open.<br>Here are two of them.</h2>
+    <div class="two">
+      <div>
+        <h3 style="font-size:19px;color:var(--brick);letter-spacing:.04em;margin-bottom:8px">
+        Suite 315</h3>
+        <p class="lede">An open reception area with storefront glass, private offices off a short
+        hall, and its own wood door on the arcade. New plank flooring and fresh paint throughout.</p>
+        <p>Nothing here needs demolition, permits or a build-out period. A tenant can put furniture
+        in it and open.</p>
+        <div class="spec">
+          <div><b>Entry</b><span>Private, on the covered arcade</span></div>
+          <div><b>Layout</b><span>Open front area plus private offices</span></div>
+          <div><b>Condition</b><span>Move-in ready</span></div>
+          <div><b>Daylight</b><span>Storefront glass, blinds fitted</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="vid">
+          <video controls preload="metadata" playsinline poster="img/walkup_poster.jpg"
+                 aria-label="Walking from the parking lot through the arcade to the door of Suite 315 and into the open front area">
+            <source src="img/walkup.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="cap">From the lot, along the arcade, through the door &mdash; seventeen seconds.</p>
+      </div>
+    </div>
+    <div class="gal" style="margin-top:30px">
+      <figure><img src="img/s315_door.jpg" alt="The door of Suite 315 with its storefront glass under the arcade"><figcaption class="cap">The door on the arcade.</figcaption></figure>
+      <figure><img src="img/s315_main.jpg" alt="The open front area of Suite 315 with storefront windows and the entry door"><figcaption class="cap">The open front area, looking back at the entry.</figcaption></figure>
+      <figure><img src="img/s315_open.jpg" alt="The open area of Suite 315 looking toward the private offices"><figcaption class="cap">Toward the private offices.</figcaption></figure>
+      <figure><img src="img/s315_off1.jpg" alt="A private office in Suite 315"><figcaption class="cap">A private office.</figcaption></figure>
+      <figure><img src="img/s315_off2.jpg" alt="A private office in Suite 315 with a window"><figcaption class="cap">A second office, with daylight.</figcaption></figure>
+      <figure><img src="img/bldgC.jpg" alt="The center seen from the courtyard, with the flag and desert landscaping"><figcaption class="cap">The center from the courtyard.</figcaption></figure>
+    </div>
+
+    <hr style="border:0;border-top:1px solid var(--line);margin:clamp(34px,4.5vw,56px) 0">
+
+    <div class="two">
+      <div>
+        <h3 style="font-size:19px;color:var(--brick);letter-spacing:.04em;margin-bottom:8px">
+        Suite 215</h3>
+        <p class="lede">A complete professional suite. Private offices with windows, a reception
+        window onto the waiting area, a kitchenette, and its own accessible restroom inside the
+        suite.</p>
+        <p>Tile plank floors and fitted blinds throughout, and the same private wood door on the
+        covered arcade. This is the one for a practice or a professional firm that wants everything
+        behind one door.</p>
+        <div class="spec">
+          <div><b>Entry</b><span>Private, on the covered arcade</span></div>
+          <div><b>Layout</b><span>Private offices, waiting area, reception window</span></div>
+          <div><b>Restroom</b><span>Accessible, inside the suite</span></div>
+          <div><b>Kitchenette</b><span>Sink and cabinets</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="vid vid--tall">
+          <video controls preload="metadata" playsinline poster="img/tour215_poster.jpg"
+                 aria-label="A short tour of Suite 215: the entry door, the offices, the hallway, the kitchenette and the restroom">
+            <source src="img/tour215.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="cap">Through the door, the offices, the hall, the kitchenette and the restroom &mdash; twenty-two seconds.</p>
+        <figure style="margin:16px 0 0"><img src="img/s215_door.jpg" alt="The arcade outside Suite 215, with its wood door and storefront glass">
+        <figcaption class="cap">Suite 215 on the arcade, parking a few steps away.</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="gal" style="margin-top:26px">
+      <figure><img src="img/s215_recep.jpg" alt="A reception window between rooms in Suite 215"><figcaption class="cap">The reception window onto the waiting area.</figcaption></figure>
+      <figure><img src="img/s215_off1.jpg" alt="A private office in Suite 215 with a wide window"><figcaption class="cap">A private office with a full window wall.</figcaption></figure>
+      <figure><img src="img/s215_off2.jpg" alt="A second private office in Suite 215"><figcaption class="cap">A second office, same daylight.</figcaption></figure>
+      <figure><img src="img/s215_kitch.jpg" alt="The kitchenette in Suite 215 with sink and cabinets"><figcaption class="cap">Kitchenette, inside the suite.</figcaption></figure>
+      <figure><img src="img/s215_rest.jpg" alt="The accessible restroom inside Suite 215"><figcaption class="cap">Its own accessible restroom &mdash; rare at this size.</figcaption></figure>
+      <figure><img src="img/arcade.jpg" alt="The covered arcade with stone columns"><figcaption class="cap">Both suites open onto this.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark">
+  <div class="wrap">
+    <p class="eyebrow">The space</p>
+    <h2 style="color:#FFF">Every suite has its own door<br>on a covered arcade.</h2>
+    <p class="lede" style="color:#D9CFBC;max-width:62ch">The buildings face a planted court.
+    Stone columns, timber eaves, deep shade, mature desert landscaping, and solar canopy over much
+    of the lot. Parking is free and there is a great deal of it.</p>
+    <div class="gal" style="margin-top:30px">
+      <figure><img src="img/arrive.jpg" alt="A suite entrance with a wood door and storefront glass under the arcade"><figcaption class="cap">Your own door &mdash; not a lobby, not a corridor.</figcaption></figure>
+      <figure><img src="img/court.jpg" alt="The planted courtyard framed by an arcade arch"><figcaption class="cap">The planted court, framed from the arcade.</figcaption></figure>
+      <figure><img src="img/patio.jpg" alt="Shaded concrete tables and benches under the arcade"><figcaption class="cap">Shaded seating already built in &mdash; a caf&eacute; patio that exists today.</figcaption></figure>
+      <figure><img src="img/solar.jpg" alt="Solar canopy over the parking lot"><figcaption class="cap">Solar canopy over the lot. Shade in July is not a small thing in Mesa.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band band--panel">
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <p class="eyebrow">The offer</p>
+        <h2>The Southern Avenue Start</h2>
+        <ul class="terms">
+          <li><b>Months 1&ndash;2</b><span>Half rent, on a term of 36 months or longer.</span></li>
+          <li><b>Month 3 on</b><span>Full contract rent.</span></li>
+          <li><b>Improvements</b><span>A published allowance per square foot &mdash; the same for everyone.</span></li>
+          <li><b>Signage</b><span>On the monument and the building, included.</span></li>
+          <li><b>Parking</b><span>Free, nearly three acres, much of it shaded.</span></li>
+          <li><b>Business support</b><span>Mesa Business Builder coaching and a sponsored ASBA membership, arranged by us.</span></li>
+          <li><b>Referrals</b><span>Clinical tenants are introduced to our care teams.</span></li>
+          <li><b>An answer</b><span>In writing, within five business days of your tour.</span></li>
+        </ul>
+        <div class="pull" style="margin-top:28px"><p><b>Looking for a coffee shop or caf&eacute;.</b>
+        The patio is already here &mdash; shaded tables under the arcade facing the planted court.
+        Talk to us about the space beside it.</p></div>
+      </div>
+      <div>
+        <p class="eyebrow">Who we are looking for</p>
+        <table>
+          <tr><th>Category</th><th>Examples</th></tr>
+          <tr><td>Clinical</td><td>Optometry, podiatry, physical therapy, behavioral health, lab, imaging</td></tr>
+          <tr><td>Services</td><td>Legal aid, benefits enrollment, tax preparation, insurance, a credit union</td></tr>
+          <tr><td>Food</td><td>A coffee shop or caf&eacute; &mdash; patio space available</td></tr>
+          <tr><td>Native<br>enterprise</td><td>A desk, a small office or a full suite &mdash; a ladder, not a single rent</td></tr>
+        </table>
+        <p style="margin-top:20px"><b>This address sits in a federally designated Opportunity Zone</b>
+        &mdash; Census Tract 4222.03. For a tenant financing a build-out with investor capital, that
+        is a federal tax advantage an identical building a mile east does not carry. Ask us about it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <p class="eyebrow">Who your landlord is</p>
+    <h2>You are not leasing from an investor.</h2>
+    <div class="facts" style="margin-bottom:26px">
+      <div class="fact"><b>48</b><span>Years in the valley</span></div>
+      <div class="fact"><b>5</b><span>Health centers</span></div>
+      <div class="fact"><b>3</b><span>Of them owned</span></div>
+    </div>
+    <div class="two">
+      <div>
+        <p class="lede">NATIVE HEALTH has served this valley for forty-eight years. We operate five
+        health centers and own three of them outright &mdash; a community health organization, not
+        a holding company.</p>
+        <p>We are still here in year ten. We answer our own phone. And because the clinic downstairs
+        is ours, we have every reason to want the businesses around it to succeed.</p>
+      </div>
+      <div class="gal" style="grid-template-columns:1fr 1fr">
+        <figure><img src="img/court2.jpg" alt="The arcade and planted court seen from the parking lot"><figcaption class="cap">The court from the lot.</figcaption></figure>
+        <figure><img src="img/street.jpg" alt="The property's street presence on Southern Avenue"><figcaption class="cap">Street presence on Southern.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band band--dark">
+  <div class="wrap">
+    <p class="eyebrow">Leasing</p>
+    <h2 style="color:#FFF">Come see it.</h2>
+    <p class="lede" style="color:#D9CFBC">Two suites are available now. Tours are in person &mdash;
+    the clinic is open, the lot is full, and the arcade does not photograph the way it feels.</p>
+    <p style="color:#D9CFBC"><b style="color:#FFF">NATIVE HEALTH &mdash; Planning and Capital Projects</b><br>
+    Tony Skrelunas, MBA<br>
+    777 West Southern Avenue, Mesa, Arizona 85210</p>
+    <div class="contact">
+      <span class="mail" id="mail">tonyskrelunas@gmail.com</span>
+      <button class="copy" id="copy" type="button">Copy address</button>
+    </div>
+    <p class="cap" style="color:#A99E8B">Rates on request. Suites are offered on terms of 36 months
+    or longer. Opportunity Zone status refers to Census Tract 4222.03 and is not tax advice.</p>
+  </div>
+</section>
+
+<script>
+(function(){
+  var b=document.getElementById('copy'), m=document.getElementById('mail');
+  if(!b||!m) return;
+  b.addEventListener('click',function(){
+    var t=m.textContent.trim(), done=function(){
+      var o=b.textContent; b.textContent='Copied'; setTimeout(function(){b.textContent=o},1800);
+    };
+    try{
+      navigator.clipboard.writeText(t).then(done,select);
+    }catch(e){ select(); }
+    function select(){
+      try{
+        var r=document.createRange(); r.selectNodeContents(m);
+        var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        b.textContent='Select and copy'; setTimeout(function(){b.textContent='Copy address'},2400);
+      }catch(e){}
+    }
+  });
+})();
+</script>
